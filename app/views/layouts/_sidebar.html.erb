@@ -1,4 +1,16 @@
-  <% if @book.errors.any? %>
+<div>
+  <h2>User info</h2>
+  <%= image_tag @user.get_profile_image(63,63) %>
+  <h3>name</h3>
+  <h3><%= @user.name %></h3>
+  <h3>introduction</h3>
+  <h3><%= @user.introduction %></h3>
+  <% if @user == current_user %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+</div>
+
+<% if @book.errors.any? %>
   <%= @book.errors.count %>件のエラーが発生しました
   <ul>
     <% @book.errors.full_messages.each do |message| %>

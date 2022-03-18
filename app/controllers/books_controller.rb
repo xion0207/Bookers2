@@ -6,8 +6,12 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    @book.save
+    flash[:notice] = "successfully"
+    if @book.save
     redirect_to books_path
+    else
+      render :new
+    end
   end
 
   def index
@@ -19,6 +23,9 @@ class BooksController < ApplicationController
   end
 
   def destroy
+    @book = destroyBook(params[:id])
+    @book.destroy
+    redirect_to Books_path
   end
 
   private

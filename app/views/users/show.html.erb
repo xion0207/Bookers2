@@ -1,0 +1,27 @@
+<% if flash[:notice] %>
+     <p id="notice">
+       <%= flash[:notice] %>
+     </p>
+<% end %>
+<div>
+  <h2>User info</h2>
+  <%= image_tag @user.get_profile_image(63,63) %>
+  <h3>name</h3>
+  <h3><%= @user.name %></h3>
+  <h3>introduction</h3>
+  <h3><%= @user.introduction %></h3>
+  <% if @user == current_user %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+</div>
+
+<% @books.each do |book| %>
+<div>
+  <%= link_to book_path(book.id) do %>
+  <% end %>
+  <p><%= image_tag book.user.get_profile_image(63,63) %></p>
+  <p><%= book.title %></p>
+  <p><%= book.body %></p>
+  <p><%= book.user.name %></p>
+</div>
+<% end %>
