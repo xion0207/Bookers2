@@ -1,18 +1,33 @@
 <% if @user.errors.any? %>
-  <%= @user.errors.count %>件のエラーが発生しました
+  <%= @user.errors.count %>件のerrorが発生しました
   <ul>
     <% @user.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
   </ul>
 <% end %>
-<h2>プロフィール編集</h2>
-<%= form_with model: @user do |f| %>
-  <label for="inputName">Name</label>
-  <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name" %>
-  <label for="inputImage">Image</label>
-  <%= f.file_field :profile_image, placeholder: "Image", accept: "image/*" %>
-  <label for="inputIntroduction">Introduction</label>
-  <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"Introduction" %>
-  <%= f.submit "Updete User" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <h2>User info</h2>
+    <%= form_with model: @user do |f| %>
+      <div class="form-group">
+        <label for="user_name">Name</label>
+        <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"Name", class:"form-control name" %>
+      </div>
+     <div class="form-group">
+        <label for="user_image">Image</label>
+        <%= f.file_field :profile_image, placeholder: "Image", accept: "image/*", class:"form-control-file user_image" %>
+      </div>
+      <div class="form-group">
+        <label for="user_introduction">Introduction</label>
+        <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"Introduction", class:"form-control introduction" %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Updete User", class:"btn btn-secondary" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+

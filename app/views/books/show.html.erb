@@ -1,9 +1,29 @@
-<div>
-  <p><%= @book.title %></p>
-  <p><%= @book.body %></p>
-  <p>User image：<%= image_tag @book.user.get_profile_image(63,63) %></p>
-  <p><%= @book.user.name %></p>
-  <% if @book.user == current_user %>
-    <%= link_to "Destroy", book_path(@book), method: :delete %>
-  <% end %>
-</div>
+
+   <div class="container px-5 px-sm-0">
+    <div class="row">
+     <div class="col-md-3">
+      <%= render 'users/user_sidebar', user: @user %>
+      <%= render 'books/book_sidebar', book: @bookk %>
+     </div>
+     <div class="col-md-8 offset-md-1">
+  	  	<h2>Book detail</h2>
+    		<table class="table">
+  		   <tbody>
+  		    <tr>
+         <td>
+          <%= link_to book_path do %><%= image_tag @user.get_profile_image(63,63), class:"attachment user profile_image fallback" %><% end %><br>
+          <%= link_to book_path do %><% @book.user.name %><% end %>
+         </td>
+          <td><%= @book.title %></td>
+          <td><%= @book.body %></td>
+          <% if @book.user == current_user %>
+          <td><a class="btn btn-sm btn-success edit_book_51870" href="/books/51870/edit">Edit</a></td>
+          <td><%= link_to "削除", user_path(@book), method: :delete %></td>
+
+          <% end %>
+
+        </tr>
+      </tbody></table>
+    </div>
+   </div>
+  </div>
