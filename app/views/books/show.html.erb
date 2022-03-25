@@ -11,15 +11,16 @@
   		   <tbody>
   		    <tr>
          <td>
-          <%= link_to book_path do %><%= image_tag @user.get_profile_image(63,63), class:"attachment user profile_image fallback" %><% end %><br>
-          <%= link_to book_path do %><% @book.user.name %><% end %>
+          <%= link_to user_path(@user) do %><%= image_tag @user.get_profile_image(63,63), class:"attachment user profile_image fallback" %><% end %><br>
+          <%= link_to user_path(@user) do %><% @book.user.name %><% end %>
          </td>
-          <td><%= @book.title %></td>
+          <td><%= link_to book_path(@book) do %> <%= @book.title %> <% end %></td>
           <td><%= @book.body %></td>
           <% if @book.user == current_user %>
-          <td><a class="btn btn-sm btn-success edit_book_51870" href="/books/51870/edit">Edit</a></td>
-          <td><%= link_to "削除", user_path(@book), method: :delete %></td>
-
+          <td><%= link_to edit_book_path, class:"btn btn-sm btn-success" do %> Edit<% end %></td>
+          <% end %>
+          <% if @book.user == current_user %>
+          <td><%= link_to book_path(@book), class:"btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" do %>Delete<% end %></td>
           <% end %>
 
         </tr>
