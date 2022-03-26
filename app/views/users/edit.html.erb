@@ -27,7 +27,7 @@
         <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"Introduction", class:"form-control introduction" %>
       </div>
       <div class="form-group">
-        <%= f.submit "Updete User", class:"btn btn-secondary" %>
+        <%= f.submit class:"btn btn-secondary" do %>Update User<% end %>
       </div>
     </div>
     <% end %>
